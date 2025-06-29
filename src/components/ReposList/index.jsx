@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 
 import styles from './ReposList.module.css'
 
-const ReposList = ({ nomeUsuario }) => {
+const ReposList = ({ userName }) => {
     const [repos, setRepos] = useState([]);
     const [estaCarregando, setEstaCarregando] = useState(true)
 
     useEffect(() => {
         setEstaCarregando(true)
-        fetch(`https://api.github.com/users/${nomeUsuario}/repos`)
+        fetch(`https://api.github.com/users/${userName}/repos`)
             .then(res => res.json())
             .then(resJson => {
                 setTimeout(() => {
@@ -16,12 +16,12 @@ const ReposList = ({ nomeUsuario }) => {
                     setRepos(resJson)
                 }, 3000)
             });
-    }, [nomeUsuario])
+    }, [userName])
 
     return (
-        <div className="container">
+        <div className="repos-content">
             {estaCarregando ? (
-                <h1>Carregando...</h1>
+                <div className="spinner"></div>
             ) : (
                 <ul className={styles.list}>
                     {repos.map( repositorio => (

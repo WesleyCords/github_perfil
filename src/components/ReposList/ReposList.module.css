@@ -2,28 +2,56 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
+    margin-bottom: 20px;
 }
 
 .listItem {
     list-style: none;
     padding: 16px;
-    border: 1px solid rgba(0,0,0,.3)
+    border: 2px solid #ccc;
+    box-shadow: 4px 4px 2px 1px rgba(0,0,0,.6);
+    transition: all .3s;
 }
 
-.itemName b,
-.itemLanguage b {
-    margin-right: 8px;
+.listItem:hover {
+    transform: scale(1.05);
+}
 
+.itemName ,
+.itemLanguage  {
+    margin-right: 8px;
+    color: var(--colorText);
+    text-wrap: nowrap;
+}
+
+b {
+    color: #ccc;
 }
 
 
 .itemLink {
     display: block;
-    background-color: var(--corPrincipal);
+    background-color: var(--colorLinkButton);
     color: var(--corSecundaria);
+    border-radius: 3px;
     text-align: center;
     font-weight: bold;
     margin-top: 8px;
     padding: 8px;
     text-decoration: none;
+}
+
+@media screen and (max-width: 640px) {
+    .list {
+        display: block;
+    }
+    .listItem {
+        margin: 15px 0;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 641px) {
+    .list {
+        grid-template-columns: 1fr 1fr;
+    }
 }
